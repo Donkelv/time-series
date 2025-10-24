@@ -2,7 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:intl/intl.dart';
 
 extension AssetName on String {
-  String get svg => 'assets/svgs/$this.svg';
+  String get svg => 'assets/svg/$this.svg';
   String get png => 'assets/images/$this.png';
   String get jpg => 'assets/images/$this.jpg';
   String get mp4 => 'assets/videos/$this.mp4';

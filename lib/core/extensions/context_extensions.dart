@@ -6,6 +6,8 @@ extension ContextExtension on BuildContext {
   double get screenWidth => MediaQuery.of(this).size.width;
   double get screenHeight => MediaQuery.of(this).size.height;
   bool get isSmallPhone => screenHeight <= 667.0; // iPhone 7 height approximate
+  ThemeData get theme => Theme.of(this);
+  ColorScheme get colorScheme => theme.colorScheme;
   double get availableHeight =>
       MediaQuery.of(this).size.height -
       MediaQuery.of(this).padding.top -
