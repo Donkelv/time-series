@@ -21,11 +21,11 @@ BiometricsModel _$BiometricsModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$BiometricsModel {
-  DateTime get date => throw _privateConstructorUsedError;
+  String get date => throw _privateConstructorUsedError;
   double? get hrv => throw _privateConstructorUsedError;
-  int? get rhr => throw _privateConstructorUsedError;
-  int? get steps => throw _privateConstructorUsedError;
-  int? get sleepScore => throw _privateConstructorUsedError;
+  num? get rhr => throw _privateConstructorUsedError;
+  num? get steps => throw _privateConstructorUsedError;
+  num? get sleepScore => throw _privateConstructorUsedError;
 
   /// Serializes this BiometricsModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -44,13 +44,7 @@ abstract class $BiometricsModelCopyWith<$Res> {
     $Res Function(BiometricsModel) then,
   ) = _$BiometricsModelCopyWithImpl<$Res, BiometricsModel>;
   @useResult
-  $Res call({
-    DateTime date,
-    double? hrv,
-    int? rhr,
-    int? steps,
-    int? sleepScore,
-  });
+  $Res call({String date, double? hrv, num? rhr, num? steps, num? sleepScore});
 }
 
 /// @nodoc
@@ -80,7 +74,7 @@ class _$BiometricsModelCopyWithImpl<$Res, $Val extends BiometricsModel>
                 null == date
                     ? _value.date
                     : date // ignore: cast_nullable_to_non_nullable
-                        as DateTime,
+                        as String,
             hrv:
                 freezed == hrv
                     ? _value.hrv
@@ -90,17 +84,17 @@ class _$BiometricsModelCopyWithImpl<$Res, $Val extends BiometricsModel>
                 freezed == rhr
                     ? _value.rhr
                     : rhr // ignore: cast_nullable_to_non_nullable
-                        as int?,
+                        as num?,
             steps:
                 freezed == steps
                     ? _value.steps
                     : steps // ignore: cast_nullable_to_non_nullable
-                        as int?,
+                        as num?,
             sleepScore:
                 freezed == sleepScore
                     ? _value.sleepScore
                     : sleepScore // ignore: cast_nullable_to_non_nullable
-                        as int?,
+                        as num?,
           )
           as $Val,
     );
@@ -116,13 +110,7 @@ abstract class _$$BiometricsModelImplCopyWith<$Res>
   ) = __$$BiometricsModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({
-    DateTime date,
-    double? hrv,
-    int? rhr,
-    int? steps,
-    int? sleepScore,
-  });
+  $Res call({String date, double? hrv, num? rhr, num? steps, num? sleepScore});
 }
 
 /// @nodoc
@@ -151,7 +139,7 @@ class __$$BiometricsModelImplCopyWithImpl<$Res>
             null == date
                 ? _value.date
                 : date // ignore: cast_nullable_to_non_nullable
-                    as DateTime,
+                    as String,
         hrv:
             freezed == hrv
                 ? _value.hrv
@@ -161,17 +149,17 @@ class __$$BiometricsModelImplCopyWithImpl<$Res>
             freezed == rhr
                 ? _value.rhr
                 : rhr // ignore: cast_nullable_to_non_nullable
-                    as int?,
+                    as num?,
         steps:
             freezed == steps
                 ? _value.steps
                 : steps // ignore: cast_nullable_to_non_nullable
-                    as int?,
+                    as num?,
         sleepScore:
             freezed == sleepScore
                 ? _value.sleepScore
                 : sleepScore // ignore: cast_nullable_to_non_nullable
-                    as int?,
+                    as num?,
       ),
     );
   }
@@ -192,15 +180,15 @@ class _$BiometricsModelImpl implements _BiometricsModel {
       _$$BiometricsModelImplFromJson(json);
 
   @override
-  final DateTime date;
+  final String date;
   @override
   final double? hrv;
   @override
-  final int? rhr;
+  final num? rhr;
   @override
-  final int? steps;
+  final num? steps;
   @override
-  final int? sleepScore;
+  final num? sleepScore;
 
   @override
   String toString() {
@@ -244,26 +232,26 @@ class _$BiometricsModelImpl implements _BiometricsModel {
 
 abstract class _BiometricsModel implements BiometricsModel {
   const factory _BiometricsModel({
-    required final DateTime date,
+    required final String date,
     final double? hrv,
-    final int? rhr,
-    final int? steps,
-    final int? sleepScore,
+    final num? rhr,
+    final num? steps,
+    final num? sleepScore,
   }) = _$BiometricsModelImpl;
 
   factory _BiometricsModel.fromJson(Map<String, dynamic> json) =
       _$BiometricsModelImpl.fromJson;
 
   @override
-  DateTime get date;
+  String get date;
   @override
   double? get hrv;
   @override
-  int? get rhr;
+  num? get rhr;
   @override
-  int? get steps;
+  num? get steps;
   @override
-  int? get sleepScore;
+  num? get sleepScore;
 
   /// Create a copy of BiometricsModel
   /// with the given fields replaced by the non-null parameter values.

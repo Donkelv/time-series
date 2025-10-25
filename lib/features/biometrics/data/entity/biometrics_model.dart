@@ -6,11 +6,11 @@ part 'biometrics_model.g.dart';
 @freezed
 class BiometricsModel with _$BiometricsModel {
   const factory BiometricsModel({
-    required DateTime date,
+    required String date,
     double? hrv,
-    int? rhr,
-    int? steps,
-    int? sleepScore,
+    num? rhr,
+    num? steps,
+    num? sleepScore,
   }) = _BiometricsModel;
 
   factory BiometricsModel.fromJson(Map<String, dynamic> json) =>

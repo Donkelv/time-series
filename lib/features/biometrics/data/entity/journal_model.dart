@@ -6,7 +6,7 @@ part 'journal_model.g.dart';
 @freezed
 class JournalModel with _$JournalModel {
   const factory JournalModel({
-    required DateTime date,
+    required String date,
     int? mood,
     String? note,
   }) = _JournalModel;

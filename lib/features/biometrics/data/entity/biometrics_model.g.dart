@@ -9,17 +9,17 @@ part of 'biometrics_model.dart';
 _$BiometricsModelImpl _$$BiometricsModelImplFromJson(
   Map<String, dynamic> json,
 ) => _$BiometricsModelImpl(
-  date: DateTime.parse(json['date'] as String),
+  date: json['date'] as String,
   hrv: (json['hrv'] as num?)?.toDouble(),
-  rhr: (json['rhr'] as num?)?.toInt(),
-  steps: (json['steps'] as num?)?.toInt(),
-  sleepScore: (json['sleepScore'] as num?)?.toInt(),
+  rhr: json['rhr'] as num?,
+  steps: json['steps'] as num?,
+  sleepScore: json['sleepScore'] as num?,
 );
 
 Map<String, dynamic> _$$BiometricsModelImplToJson(
   _$BiometricsModelImpl instance,
 ) => <String, dynamic>{
-  'date': instance.date.toIso8601String(),
+  'date': instance.date,
   'hrv': instance.hrv,
   'rhr': instance.rhr,
   'steps': instance.steps,

@@ -42,7 +42,7 @@ dependencies:
   gif: ^2.3.0
   dartz: ^0.10.1
   flutter_riverpod: ^2.6.0
-  fl_chart: ^1.1.0
+  fl_chart: ^0.70.0
   shared_preferences: ^2.5.3
   websafe_svg: ^3.0.1+10
   

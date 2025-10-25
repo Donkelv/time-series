@@ -8,14 +8,14 @@ part of 'journal_model.dart';
 
 _$JournalModelImpl _$$JournalModelImplFromJson(Map<String, dynamic> json) =>
     _$JournalModelImpl(
-      date: DateTime.parse(json['date'] as String),
+      date: json['date'] as String,
       mood: (json['mood'] as num?)?.toInt(),
       note: json['note'] as String?,
     );
 
 Map<String, dynamic> _$$JournalModelImplToJson(_$JournalModelImpl instance) =>
     <String, dynamic>{
-      'date': instance.date.toIso8601String(),
+      'date': instance.date,
       'mood': instance.mood,
       'note': instance.note,
     };

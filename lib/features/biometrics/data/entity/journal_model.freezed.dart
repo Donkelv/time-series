@@ -21,7 +21,7 @@ JournalModel _$JournalModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$JournalModel {
-  DateTime get date => throw _privateConstructorUsedError;
+  String get date => throw _privateConstructorUsedError;
   int? get mood => throw _privateConstructorUsedError;
   String? get note => throw _privateConstructorUsedError;
 
@@ -42,7 +42,7 @@ abstract class $JournalModelCopyWith<$Res> {
     $Res Function(JournalModel) then,
   ) = _$JournalModelCopyWithImpl<$Res, JournalModel>;
   @useResult
-  $Res call({DateTime date, int? mood, String? note});
+  $Res call({String date, int? mood, String? note});
 }
 
 /// @nodoc
@@ -70,7 +70,7 @@ class _$JournalModelCopyWithImpl<$Res, $Val extends JournalModel>
                 null == date
                     ? _value.date
                     : date // ignore: cast_nullable_to_non_nullable
-                        as DateTime,
+                        as String,
             mood:
                 freezed == mood
                     ? _value.mood
@@ -96,7 +96,7 @@ abstract class _$$JournalModelImplCopyWith<$Res>
   ) = __$$JournalModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({DateTime date, int? mood, String? note});
+  $Res call({String date, int? mood, String? note});
 }
 
 /// @nodoc
@@ -123,7 +123,7 @@ class __$$JournalModelImplCopyWithImpl<$Res>
             null == date
                 ? _value.date
                 : date // ignore: cast_nullable_to_non_nullable
-                    as DateTime,
+                    as String,
         mood:
             freezed == mood
                 ? _value.mood
@@ -148,7 +148,7 @@ class _$JournalModelImpl implements _JournalModel {
       _$$JournalModelImplFromJson(json);
 
   @override
-  final DateTime date;
+  final String date;
   @override
   final int? mood;
   @override
@@ -189,7 +189,7 @@ class _$JournalModelImpl implements _JournalModel {
 
 abstract class _JournalModel implements JournalModel {
   const factory _JournalModel({
-    required final DateTime date,
+    required final String date,
     final int? mood,
     final String? note,
   }) = _$JournalModelImpl;
@@ -198,7 +198,7 @@ abstract class _JournalModel implements JournalModel {
       _$JournalModelImpl.fromJson;
 
   @override
-  DateTime get date;
+  String get date;
   @override
   int? get mood;
   @override
