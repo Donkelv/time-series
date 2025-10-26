@@ -1,12 +1,57 @@
 [
     {
-        "date": "2025-08-02",
-        "mood": 2,
-        "note": "Bad sleep"
+        "date": "2025-10-24",
+        "mood": 5,
+        "note": "Feeling productive today"
     },
     {
-        "date": "2025-08-12",
+        "date": "2025-10-18",
+        "mood": 3,
+        "note": "Average day"
+    },
+    {
+        "date": "2025-10-12",
+        "mood": 4,
+        "note": "Good sleep and energy"
+    },
+    {
+        "date": "2025-10-05",
+        "mood": 2,
+        "note": "Stressed from work"
+    },
+    {
+        "date": "2025-09-29",
         "mood": 5,
-        "note": "Great run"
+        "note": "Completed a big task"
+    },
+    {
+        "date": "2025-09-20",
+        "mood": 1,
+        "note": "Felt unwell"
+    },
+    {
+        "date": "2025-09-10",
+        "mood": 4,
+        "note": "Nice workout session"
+    },
+    {
+        "date": "2025-09-02",
+        "mood": 5,
+        "note": "Family outing"
+    },
+    {
+        "date": "2025-08-25",
+        "mood": 3,
+        "note": "Busy but okay"
+    },
+    {
+        "date": "2025-08-10",
+        "mood": 2,
+        "note": "Poor sleep"
+    },
+    {
+        "date": "2025-07-30",
+        "mood": 4,
+        "note": "Feeling balanced"
     }
 ]

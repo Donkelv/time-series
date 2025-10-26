@@ -12,6 +12,8 @@ import 'package:time_series/features/biometrics/logic/chart_controller/chart_pro
 import 'package:time_series/features/biometrics/logic/journal/journal_provider.dart';
 import 'package:time_series/features/biometrics/presentation/widgets/biometrics_charts.dart';
 import 'package:time_series/features/biometrics/presentation/widgets/chart_tool_bar.dart';
+import 'package:time_series/features/biometrics/presentation/widgets/loading_states.dart';
+import 'package:time_series/features/biometrics/presentation/widgets/performance_monitor.dart';
 import 'package:websafe_svg/websafe_svg.dart';
 
 class HomeScreen extends ConsumerStatefulWidget {
@@ -33,31 +35,17 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final combined = ref.watch(combinedChartDataProvider);
+    ref.listen(combinedChartDataProvider, (prev, next) {
+      if (next != null) {
+        ref
+            .read(chartControllerProvider.notifier)
+            .generateSpots(
+              entries: next['biometrics'] as List<BiometricsModel>,
+              journals: next['journal'] as List<JournalModel>,
+            );
+      }
+    });
 
-    if (combined != null) {
-      ref
-          .read(chartControllerProvider.notifier)
-          .generateSpots(
-            entries: combined['biometrics'] as List<BiometricsModel>,
-            journals: combined['journal'] as List<JournalModel>,
-          );
-    }
-    // ref.listen(getBiometricsDataProvider, (_, state) {
-    //   state.whenOrNull(
-    //     successful: (data) {
-    //       ref.listen(journalProvider, (_, journalState) {
-    //         journalState.whenOrNull(
-    //           successful: (journalData) {
-    //             ref
-    //                 .read(chartControllerProvider.notifier)
-    //                 .generateSpots(entries: data, journals: journalData);
-    //           },
-    //         );
-    //       });
-    //     },
-    //   );
-    // });
     final themeMode = ref.watch(themeModeProvider);
     final isDarkMode = themeMode == ThemeMode.dark;
     return AnnotatedRegion<SystemUiOverlayStyle>(
@@ -80,12 +68,13 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
               if (constraints.maxWidth < 600) {
                 return MobileView();
               } else {
-                return const Text('Tablet/ Desktop Home Screen');
+                return MobileView();
               }
             },
           ),
         ),
         floatingActionButton: FloatingActionButton(
+          backgroundColor: TimeSeriesColors.cadmiumRed,
           onPressed: () {
             ref.read(themeModeProvider.notifier).toggleTheme();
           },
@@ -100,7 +89,13 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                         BlendMode.srcIn,
                       ),
                     )
-                    : WebsafeSvg.asset("dark".svg),
+                    : WebsafeSvg.asset(
+                      "dark".svg,
+                      colorFilter: const ColorFilter.mode(
+                        TimeSeriesColors.white,
+                        BlendMode.srcIn,
+                      ),
+                    ),
           ),
         ),
       ),
@@ -113,71 +108,83 @@ class MobileView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final chartState = ref.watch(chartControllerProvider);
     final themeMode = ref.watch(themeModeProvider);
     final isDarkMode = themeMode == ThemeMode.dark;
-    final combined = ref.watch(combinedChartDataProvider);
 
-    return SingleChildScrollView(
-      physics: const BouncingScrollPhysics(),
-      child: SizedBox(
-        height: context.screenHeight,
-        width: context.screenWidth,
+    return SizedBox(
+      height: context.screenHeight,
+      width: context.screenWidth,
+      child: SingleChildScrollView(
+        physics: const BouncingScrollPhysics(),
         child:
             ref
-                .watch(getBiometricsDataProvider)
+                .watch(journalProvider)
                 .whenOrNull(
-                  successful: (data) {
-                    return Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        ChartToolbar(
-                          selectedRange: chartState.selectedRange,
-                          onRangeChange: (r) {
-                            ref
-                                .read(chartControllerProvider.notifier)
-                                .updateRange(r);
-                            if (combined != null) {
-                              ref
-                                  .read(chartControllerProvider.notifier)
-                                  .generateSpots(
-                                    entries:
-                                        combined['biometrics']
-                                            as List<BiometricsModel>,
-                                    journals:
-                                        combined['journal']
-                                            as List<JournalModel>,
-                                  );
-                            }
+                  successful: (journalData) {
+                    return ref
+                        .watch(getBiometricsDataProvider)
+                        .when(
+                          initial: () => const LoadingSkeleton(),
+                          loading: () => const LoadingSkeleton(),
+                          successful: (data) {
+                            return Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.stretch,
+                              children: [
+                                ChartToolbar(),
+                                BiometricsChart(title: "HRV", metric: "hrv"),
+                                BiometricsChart(title: "RHR", metric: "rhr"),
+                                BiometricsChart(
+                                  title: "Steps",
+                                  metric: "steps",
+                                ),
+                                const PerformanceMonitor(),
+                                const PerformanceNote(),
+                              ],
+                            );
                           },
-                        ),
-                        BiometricsChart(title: "HRV", metric: "hrv"),
-                        BiometricsChart(title: "RHR", metric: "rhr"),
-                        BiometricsChart(title: "Steps", metric: "steps"),
-                      ],
+                          error:
+                              (error) => ErrorState(
+                                errorMessage: error?.message,
+                                onRetry: () {
+                                  ref
+                                      .read(getBiometricsDataProvider.notifier)
+                                      .biometrics();
+                                  ref.read(journalProvider.notifier).journal();
+                                },
+                              ),
+                          empty:
+                              () => EmptyState(
+                                message:
+                                    'No journal data available. Please check your device connection.',
+                                onRefresh: () {
+                                  ref
+                                      .read(getBiometricsDataProvider.notifier)
+                                      .biometrics();
+                                  ref.read(journalProvider.notifier).journal();
+                                },
+                              ),
+                        );
+                  },
+                  empty: () {
+                    return EmptyState(
+                      message:
+                          'No journal data available. Please check your device connection.',
+                      onRefresh: () {
+                        ref.read(journalProvider.notifier).journal();
+                      },
                     );
                   },
                   error: (error) {
-                    return Center(
-                      child: Text(
-                        error?.message ?? 'An error occurred',
-                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                          color: TimeSeriesColors.cadmiumRed,
-                        ),
-                      ),
+                    return ErrorState(
+                      errorMessage: error?.message,
+                      onRetry: () {
+                        ref.read(journalProvider.notifier).journal();
+                      },
                     );
                   },
                 ) ??
-            Center(
-              child: CircularProgressIndicator.adaptive(
-                valueColor: AlwaysStoppedAnimation(
-                  isDarkMode
-                      ? TimeSeriesColors.white
-                      : TimeSeriesColors.vampireBlack,
-                ),
-              ),
-            ),
+            LoadingSkeleton(),
       ),
     );
   }

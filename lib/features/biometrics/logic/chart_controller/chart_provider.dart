@@ -1,36 +1,68 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:time_series/features/biometrics/data/entity/biometrics_model.dart';
 import 'package:time_series/features/biometrics/data/entity/journal_model.dart';
 import 'package:time_series/features/biometrics/logic/biometrics/biometrics_provider.dart';
+import 'package:time_series/features/biometrics/logic/biometrics/biometrics_state.dart';
 import 'package:time_series/features/biometrics/logic/chart_controller/chart_controller_notifier.dart';
 import 'package:time_series/features/biometrics/logic/chart_controller/chart_controller_state.dart';
 import 'package:time_series/features/biometrics/logic/journal/journal_provider.dart';
+import 'package:time_series/features/biometrics/logic/journal/journal_state.dart';
+
+// final combinedChartDataProvider = Provider.autoDispose((ref) {
+//   final biometricsState = ref.watch(getBiometricsDataProvider);
+//   final journalState = ref.watch(journalProvider);
+
+//   return biometricsState.whenOrNull(
+//     successful: (biometrics) {
+//       return journalState.whenOrNull(
+//         successful: (journal) {
+//           return {'biometrics': biometrics, 'journal': journal};
+//         },
+//       );
+//     },
+//   );
+// });
 
 final combinedChartDataProvider = Provider.autoDispose((ref) {
   final biometricsState = ref.watch(getBiometricsDataProvider);
   final journalState = ref.watch(journalProvider);
 
-  return biometricsState.whenOrNull(
-    successful: (biometrics) {
-      return journalState.whenOrNull(
-        successful: (journal) {
-          return {'biometrics': biometrics, 'journal': journal};
-        },
-      );
-    },
+  final biometrics = biometricsState.maybeWhen(
+    successful: (data) => data,
+    orElse: () => null,
   );
+
+  final journal = journalState.maybeWhen(
+    successful: (data) => data,
+    orElse: () => null,
+  );
+
+  if (biometrics == null || journal == null) return null;
+
+  return {'biometrics': biometrics, 'journal': journal};
 });
 
 final getChartSpotsProvider = Provider<GetChartSpots>((ref) {
   return GetChartSpots();
 });
 
+final selectedRangeProvider = StateProvider<String>((ref) => '7D');
+
 final chartControllerProvider =
     StateNotifierProvider<ChartController, ChartState>((ref) {
-      return ChartController(ref);
+      final controller = ChartController(ref);
+
+      // 🔁 Whenever range changes, regenerate chart spots automatically
+      ref.listen<String>(selectedRangeProvider, (prev, next) async {
+        debugPrint('📅 Range changed from $prev → $next');
+        final entries = ref.read(getBiometricsDataProvider).data ?? [];
+        final journals = ref.read(journalProvider).data ?? [];
+        await controller.generateSpots(entries: entries, journals: journals);
+      });
+
+      return controller;
     });
-
-
 
 class GetChartSpots {
   Future<Map<String, List<ChartSpot>>> generate(

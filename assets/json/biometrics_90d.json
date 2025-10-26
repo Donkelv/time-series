@@ -1,0 +1,212 @@
+[
+  {
+    "date": "2025-10-25",
+    "hrv": 50.0,
+    "rhr": 60,
+    "steps": 5000,
+    "sleepScore": 65
+  },
+  {
+    "date": "2025-10-24",
+    "hrv": 51.0,
+    "rhr": 61,
+    "steps": 5050,
+    "sleepScore": 66
+  },
+  {
+    "date": "2025-10-23",
+    "hrv": 52.0,
+    "rhr": 62,
+    "steps": 5100,
+    "sleepScore": 67
+  },
+  {
+    "date": "2025-10-22",
+    "hrv": 53.0,
+    "rhr": 63,
+    "steps": 5150,
+    "sleepScore": 68
+  },
+  {
+    "date": "2025-10-21",
+    "hrv": 54.0,
+    "rhr": 64,
+    "steps": 5200,
+    "sleepScore": 69
+  },
+  {
+    "date": "2025-10-20",
+    "hrv": 55.0,
+    "rhr": 65,
+    "steps": 5250,
+    "sleepScore": 70
+  },
+  {
+    "date": "2025-10-19",
+    "hrv": 56.0,
+    "rhr": 66,
+    "steps": 5300,
+    "sleepScore": 71
+  },
+  {
+    "date": "2025-10-18",
+    "hrv": 57.0,
+    "rhr": 67,
+    "steps": 5350,
+    "sleepScore": 72
+  },
+  {
+    "date": "2025-10-17",
+    "hrv": 58.0,
+    "rhr": 68,
+    "steps": 5400,
+    "sleepScore": 73
+  },
+  {
+    "date": "2025-10-16",
+    "hrv": 59.0,
+    "rhr": 69,
+    "steps": 5450,
+    "sleepScore": 74
+  },
+  {
+    "date": "2025-10-15",
+    "hrv": 60.0,
+    "rhr": 60,
+    "steps": 5500,
+    "sleepScore": 75
+  },
+  {
+    "date": "2025-10-14",
+    "hrv": 61.0,
+    "rhr": 61,
+    "steps": 5550,
+    "sleepScore": 76
+  },
+  {
+    "date": "2025-10-13",
+    "hrv": 62.0,
+    "rhr": 62,
+    "steps": 5600,
+    "sleepScore": 77
+  },
+  {
+    "date": "2025-10-12",
+    "hrv": 63.0,
+    "rhr": 63,
+    "steps": 5650,
+    "sleepScore": 78
+  },
+  {
+    "date": "2025-10-11",
+    "hrv": 64.0,
+    "rhr": 64,
+    "steps": 5700,
+    "sleepScore": 79
+  },
+  {
+    "date": "2025-10-10",
+    "hrv": 65.0,
+    "rhr": 65,
+    "steps": 5750,
+    "sleepScore": 80
+  },
+  {
+    "date": "2025-10-09",
+    "hrv": 66.0,
+    "rhr": 66,
+    "steps": 5800,
+    "sleepScore": 81
+  },
+  {
+    "date": "2025-10-08",
+    "hrv": 67.0,
+    "rhr": 67,
+    "steps": 5850,
+    "sleepScore": 82
+  },
+  {
+    "date": "2025-10-07",
+    "hrv": 68.0,
+    "rhr": 68,
+    "steps": 5900,
+    "sleepScore": 83
+  },
+  {
+    "date": "2025-10-06",
+    "hrv": 69.0,
+    "rhr": 69,
+    "steps": 5950,
+    "sleepScore": 64
+  },
+  {
+    "date": "2025-10-05",
+    "hrv": 50.0,
+    "rhr": 60,
+    "steps": 6000,
+    "sleepScore": 65
+  },
+  {
+    "date": "2025-10-04",
+    "hrv": 51.0,
+    "rhr": 61,
+    "steps": 6050,
+    "sleepScore": 66
+  },
+  {
+    "date": "2025-10-03",
+    "hrv": 52.0,
+    "rhr": 62,
+    "steps": 6100,
+    "sleepScore": 67
+  },
+  {
+    "date": "2025-10-02",
+    "hrv": 53.0,
+    "rhr": 63,
+    "steps": 6150,
+    "sleepScore": 68
+  },
+  {
+    "date": "2025-10-01",
+    "hrv": 54.0,
+    "rhr": 64,
+    "steps": 6200,
+    "sleepScore": 69
+  },
+  {
+    "date": "2025-09-30",
+    "hrv": 55.0,
+    "rhr": 65,
+    "steps": 6250,
+    "sleepScore": 70
+  },
+  {
+    "date": "2025-09-29",
+    "hrv": 56.0,
+    "rhr": 66,
+    "steps": 6300,
+    "sleepScore": 71
+  },
+  {
+    "date": "2025-09-28",
+    "hrv": 57.0,
+    "rhr": 67,
+    "steps": 6350,
+    "sleepScore": 72
+  },
+  {
+    "date": "2025-09-27",
+    "hrv": 58.0,
+    "rhr": 68,
+    "steps": 6400,
+    "sleepScore": 73
+  },
+  {
+    "date": "2025-09-26",
+    "hrv": 59.0,
+    "rhr": 69,
+    "steps": 6450,
+    "sleepScore": 74
+  }
+]
