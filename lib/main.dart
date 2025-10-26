@@ -1,11 +1,14 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:time_series/core/theme/theme_notifier.dart';
 import 'package:time_series/features/biometrics/presentation/screens/home.dart';
+import 'package:time_series/firebase_options.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform, );
 
   runApp(ProviderScope(child: MyApp()));
 }
